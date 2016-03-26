@@ -25,10 +25,23 @@ $(function() {
     });
 
     function complicate(value) {
-            var n1 = math.floor(value/3);
-            var n2 = value%3;
-            var retval = "" + n1 + " * 3 + " + n2;
-            return retval;
+        var retval = terrible_division(value);
+        return retval;
+    }
+
+    function terrible_division(value)
+    {
+        var divisor = getRandomInt(1, 10)
+  
+        var n1 = math.floor(value/divisor);
+        var n2 = value%divisor;
+
+        var retval = "" + n1 + " * " + divisor + " + " + n2;
+        return retval;
+    }
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
     }
 });
 

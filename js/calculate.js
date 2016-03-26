@@ -18,8 +18,25 @@ $(function() {
         if(expr == "") {
             return;
         }
+        if(expr == "rarest pepe") {
+            $("#logo").attr("src","images/pepe.jpg");
+            return;
+        }
         try {
             var value = math.eval(expr);
+            var rand = getRandomNum(0,100000);
+            if(value == 9001) {
+                $("#logo").attr("src","images/9001.jpg");
+            }
+            else if(value == 80085) {
+                $("#logo").attr("src","images/80085.jpg");
+            }
+            else if(rand < 1) {
+                $("#logo").attr("src","images/pepe.jpg");
+            }
+            else {
+                $("#logo").attr("src","images/logo.jpg");
+            }
             if(math.im(value) != 0) {
                 solution = math.im(value) + "i + ";
                 value = math.re(value);

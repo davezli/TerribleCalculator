@@ -10,22 +10,26 @@ $(function() {
 	});
 
     $("button#exprsubmit").click(function() {
-        var retval;
+        var solution;
     	var expr = $("input#expr").val();
         try {
             var value = math.eval(expr);
-            var n1 = math.floor(value/3);
-            var n2 = value%value;
-            
-            retval = "" + n1 + " * 3 + " + n2;
+            solution = complicate(value);
         }
         catch (err){
-            retval = "go die, that's not math";
+            solution = "go die, that's not math";
         }
 
         $("#soln").show();
-        $("#soln").text(retval);
+        $("#soln").text(solution);
     });
+
+    function complicate(value) {
+            var n1 = math.floor(value/3);
+            var n2 = value%3;
+            var retval = "" + n1 + " * 3 + " + n2;
+            return retval;
+    }
 });
 
 

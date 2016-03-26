@@ -14,8 +14,10 @@ $(function() {
     $("button#exprsubmit").click(function() {
     	var expr = $("input#expr").val();
         var value = math.eval(expr);
-        var newv = parseInt(value, 10).toString(2)
-    	alert("clicked submit: " + newv);
+        var n1 = math.floor(value/3);
+        var n2 = value%value;
+       // var newv = parseInt(value, 10).toString(2)
+    	alert("clicked submit: " + n1 + " * 3 + " + n2);
     });
 });
 

@@ -41,6 +41,11 @@ img#logo {
     max-width: 720px !important;
 }
 
+.biopic {
+    max-width: 200px;
+    max-height: 200px;
+    float: left;
+}
 /* Background images are set within the HTML using inline CSS, not here */
 
 .fill {

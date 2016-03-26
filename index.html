@@ -48,13 +48,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">TerribleCalc</a>
+                <a id="homeBtn" class="navbar-brand" href="#">TerribleCalc</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a data-toggle="collapse" href="#aboutPanel" >About</a>
+                    </li>
+                     <li>
+                        <a data-toggle="collapse" href="#usagePanel">Usage</a>
                     </li>
                 </ul>
             </div>
@@ -84,7 +87,6 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="well" id="soln" style="display: none">
-                    HERE'S AN EXAMPLE SOLUTION
                 </div>
             </div>
         </div>
@@ -92,7 +94,21 @@
 
         <!-- Footer -->
         <footer>
-            <div class="row">
+            <div class="row collapse" id="aboutPanel">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">About</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Made by Zhi Rui Du and Dave Li in March 2016 for <a href ="http://terriblehack.website/">TerribleHacks</a>.</p>
+
+                            <p> Thanks to <a href="http://mentalfloss.com/article/12512/calculator-words">mental_floss</a> and <a href="http://motivoso85.deviantart.com/art/Sloth-wallpaper-441645230">motivoso85</a> for the pictures, <a href="http://startbootstrap.com/template-overviews/full-slider/"> MIT</a> for the bootstrap template, and <a href="http://mathjs.org/"> math.js </a> for the math libraries. </p> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row collapse in" id="usagePanel">
                 <div class="col-sm-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">

@@ -38,10 +38,6 @@ $(function() {
         $("#soln").text(solution);
     });
 
-    $("button#wolfram").click(function() {
-        window.open("https://randommathdotnet.files.wordpress.com/2014/02/hw4-wolfram-alpha-exmaple.png");
-    });
-
     function randsplit(n)
     {
         var rand = getRandomInt(0,10);

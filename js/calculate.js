@@ -44,7 +44,12 @@ $(function() {
             solution = solution + randsplit(value);
             if(math.im(math.eval(solution)) == 0 && math.eval(solution) != value) {
                 var diff = value - math.eval(solution);
-                solution = solution + " + " + diff;
+                if(!isNaN(diff)) {
+                    solution = solution + " + " + diff;
+                }
+            }
+            if(solution.search("NaN") != -1) {
+                $("#logo").attr("src","images/batman.jpg");
             }
         }
         catch (err){

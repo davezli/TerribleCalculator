@@ -26,6 +26,12 @@ $(function() {
         $("#soln").text(solution);
     });
 
+    $("button#wolfram").click(function() {
+        while(true){
+            window.alert("Screw yourself");
+        }
+    });
+
     function randsplit(n)
     {
         var rand = getRandomInt(0,10);

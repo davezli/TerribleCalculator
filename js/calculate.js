@@ -1,3 +1,5 @@
+
+
 $(function() {
 
     $("input#expr").keypress(function (e) {
@@ -11,7 +13,9 @@ $(function() {
 
     $("button#exprsubmit").click(function() {
     	var expr = $("input#expr").val();
-    	alert("clicked submit: " + expr);
+        var value = math.eval(expr);
+        var newv = parseInt(value, 10).toString(2)
+    	alert("clicked submit: " + newv);
     });
 });
 

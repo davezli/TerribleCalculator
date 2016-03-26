@@ -15,12 +15,16 @@ $(function() {
     $("button#exprsubmit").click(function() {
         var solution;
     	var expr = $("input#expr").val();
+        if(expr == "") {
+            return;
+        }
         try {
             var value = math.eval(expr);
             solution = randsplit(value);
         }
         catch (err){
-            solution = "dummy, that's not math \n error: " + err;        }
+            solution = "dummy, that's not math \n error: " + err;
+        }
 
         $("#soln").show();
         $("#soln").text(solution);
@@ -80,31 +84,59 @@ $(function() {
 
     function randomize(n) {
         var rand = getRandomInt(0,10);
-        if(rand < 3)
-            n = randsplit(n);
-        else if(rand < 4)
+        if(n == 0)
+            rand = getRandomInt(1,10);
+        if(rand < 1)
+            n = makeLog(n);
+        else if(rand < 2)
             n = makeTrig(n);
-        else if(rand < 5)
-            n = makeLn(n);
-        else if(rand < 6)
+        else if(rand < 3)
             n = makeExp(n);
+        else if(rand < 6)
+            n = randsplit(n);
         return n;
     }
 
     function makeTrig(n) {
-        return n;
+        var rand = getRandomInt(0,2);
+        var n1, n2;
+        if(rand < 1) {
+            rand = getRandomNum(0,2);
+            n2 = "sin(" + rand + "pi)";
+            n1 = n/math.eval(n2);
+        }
+        if(rand < 2) {
+            rand = getRandomNum(0,2);
+            n2 = "cos(" + rand + "pi)";
+            n1 = n/math.eval(n2);
+        }
+        return "(" + n1 + " * " + n2 +")";
     }
 
-    function makeLn(n) {
-        return n;
+    function makeLog(n) {
+        var rand = getRandomInt(1,Math.abs(2+n));
+        var n1, n2, n3;
+        n2 = "log("+rand+")";
+        rand = getRandomInt(1,Math.abs(2+n));
+        n3 = "log("+rand+")";
+        n1 = n/math.eval(n2)*math.eval(n3);
+        return "(" + n1 + " * " + "(" + n2 +" / " + n3 +"))";
     }
 
     function makeExp(n) {
-        return n;
+        var rand = getRandomInt(1,10);
+        var n1, n2;
+        n2 = "e^"+rand;
+        n1 = n/math.eval(n2)
+        return "(" + n1 + " * " + n2 + ")";
     }
 
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    function getRandomNum(min, max) {
+      return Math.random() * (max - min) + min;
     }
 });
 

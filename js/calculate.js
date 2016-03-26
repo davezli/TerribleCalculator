@@ -17,71 +17,84 @@ $(function() {
     	var expr = $("input#expr").val();
         try {
             var value = math.eval(expr);
-            solution = complicate(value);
+            solution = randsplit(value);
         }
         catch (err){
-            solution = "dummy, that's not math \n error: " + err;
-        }
+            solution = "dummy, that's not math \n error: " + err;        }
 
         $("#soln").show();
         $("#soln").text(solution);
     });
 
-    function complicate(value) {
-        var operator = getRandomInt(1,3);
-        var retval;
-        if (operator == add) 
-        {
-            retval = terrible_addition(value);
+    function randsplit(n)
+    {
+        var rand = getRandomInt(0,10);
+        var operator = "START";
+        if(n < 3) {
+            rand = 0;
         }
-        if (operator == mult)
-        {
-            retval = terrible_multiplication(value);
+        else if(n < 4) {
+            rand = getRandomInt(0,5);
         }
-        return retval;
+        if(rand < 2) { // subtraction
+            operator = " - ";
+            var n2 = getRandomInt(0,1+100*n);
+            var n1 = n+n2;
+            n2 = randomize(n2);
+            n1 = randomize(n1);            
+        }
+        else if(rand < 5) { // addition
+            operator = " + ";
+            var n2 = getRandomInt(0,n/2);
+            var n1 = n-n2;
+            n2 = randomize(n2);
+            n1 = randomize(n1);
+        }
+        else if(rand < 8) { // multiplication
+            operator = " * ";
+            var n2 = getRandomInt(1,n/2);
+            var n1 = n/n2;
+            var diff = n-n2*n1;
+            n2 = randomize(n2);
+            n1 = randomize(n1);
+            n2 = "(" + n2 + " + " + diff + ")";
+            
+        }
+        else if(rand < 10) { // division
+            operator = " / ";
+            var n2 = getRandomInt(1,n/2);
+            var n1 = n*n2;
+            var diff = n-n1/n2;
+            n2 = randomize(n2);
+            n1 = randomize(n1);
+            n2 = "(" + n2 + " + " + diff + ")";
+        }
+        return "(" + n1 + operator + n2 + ")";
     }
 
-    function randsplit(n1)
-    {
-        var chance = getRandomInt(0,100);
-        var operator = getRandomInt(1,3);
-        if (chance < 25) 
-        {
-            if (operator == add) 
-            {
-                n1 = terrible_addition(n1);
-            }
-            if (operator == mult)
-            {
-                n1 = terrible_multiplication(n1);
-            }
-        }
-
-        return n1;
+    function randomize(n) {
+        var rand = getRandomInt(0,10);
+        if(rand < 3)
+            n = randsplit(n);
+        else if(rand < 4)
+            n = makeTrig(n);
+        else if(rand < 5)
+            n = makeLn(n);
+        else if(rand < 6)
+            n = makeExp(n);
+        return n;
     }
 
-    function terrible_multiplication(value)
-    {
-        var multisor = getRandomInt(1, 10);
-        var n1 = math.floor(value/multisor);
-
-        n1 = randsplit(n1);
-
-        var n2 = value%multisor;
-
-        var retval = "" + n1 + " * " + multisor + " + " + n2;
-        return retval;
+    function makeTrig(n) {
+        return n;
     }
-    function terrible_addition(value)
-    {
-        var retval = value;
-        var adder = getRandomInt(1, 10)
-        var n1 = value - adder;
 
-        n1 = randsplit(n1);
+    function makeLn(n) {
+        return n;
+    }
 
-        retval = "(" + n1 + " + " + adder + ")";
-        return retval;
+    function makeExp(n) {
+        return n;
     }
 
     function getRandomInt(min, max) {

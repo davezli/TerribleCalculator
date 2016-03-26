@@ -13,17 +13,25 @@ $(function() {
 	});
 
     $("button#exprsubmit").click(function() {
-        var solution;
+        var solution = "";
     	var expr = $("input#expr").val();
         if(expr == "") {
             return;
         }
         try {
             var value = math.eval(expr);
-            solution = randsplit(value);
+            if(math.im(value) != 0) {
+                solution = math.im(value) + "i + ";
+                value = math.re(value);
+            }
+            solution = solution + randsplit(value);
+            if(math.im(math.eval(solution)) == 0 && math.eval(solution) != value) {
+                var diff = value - math.eval(solution);
+                solution = solution + " + " + diff;
+            }
         }
         catch (err){
-            solution = "dummy, that's not math \n error: " + err;
+            solution = "Dummy, that's not math! Try again!" + err;
         }
 
         $("#soln").show();
@@ -58,20 +66,16 @@ $(function() {
             operator = " * ";
             var n2 = getRandomInt(1,n/2);
             var n1 = n/n2;
-            var diff = n-n2*n1;
             n2 = randomize(n2);
             n1 = randomize(n1);
-            n2 = "(" + n2 + " + " + diff + ")";
             
         }
         else if(rand < 10) { // division
             operator = " / ";
             var n2 = getRandomInt(1,n/2);
             var n1 = n*n2;
-            var diff = n-n1/n2;
             n2 = randomize(n2);
             n1 = randomize(n1);
-            n2 = "(" + n2 + " + " + diff + ")";
         }
         return "(" + n1 + operator + n2 + ")";
     }
@@ -108,7 +112,7 @@ $(function() {
     }
 
     function makeLog(n) {
-        var rand = getRandomInt(1,Math.abs(2+n));
+        var rand = getRandomInt(2,3+Math.abs(n));
         var n1, n2, n3;
         n2 = "log("+rand+")";
         rand = getRandomInt(1,Math.abs(2+n));
@@ -132,6 +136,7 @@ $(function() {
     function getRandomNum(min, max) {
       return Math.random() * (max - min) + min;
     }
+
 });
 
 

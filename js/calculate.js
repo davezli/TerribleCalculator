@@ -31,7 +31,7 @@ $(function() {
             }
         }
         catch (err){
-            solution = "Dummy, that's not math! Try again!" + err;
+            solution = "Dummy, that's not math! Try again!";
         }
 
         $("#soln").show();

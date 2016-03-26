@@ -30,11 +30,11 @@ $(function() {
     function complicate(value) {
         var operator = getRandomInt(1,3);
         var retval;
-        if (operator = add) 
+        if (operator == add) 
         {
             retval = terrible_addition(value);
         }
-        if (operator = mult)
+        if (operator == mult)
         {
             retval = terrible_multiplication(value);
         }
@@ -47,11 +47,11 @@ $(function() {
         var operator = getRandomInt(1,3);
         if (chance < 25) 
         {
-            if (operator = add) 
+            if (operator == add) 
             {
                 n1 = terrible_addition(n1);
             }
-            if (operator = mult)
+            if (operator == mult)
             {
                 n1 = terrible_multiplication(n1);
             }
@@ -65,7 +65,7 @@ $(function() {
         var multisor = getRandomInt(1, 10);
         var n1 = math.floor(value/multisor);
 
-        randsplit(n1);
+        n1 = randsplit(n1);
 
         var n2 = value%multisor;
 
@@ -78,7 +78,7 @@ $(function() {
         var adder = getRandomInt(1, 10)
         var n1 = value - adder;
 
-        randsplit(n1);
+        n1 = randsplit(n1);
 
         retval = "(" + n1 + " + " + adder + ")";
         return retval;

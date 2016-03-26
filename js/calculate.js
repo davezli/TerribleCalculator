@@ -31,9 +31,7 @@ $(function() {
     });
 
     $("button#wolfram").click(function() {
-        while(true){
-            window.alert("Screw yourself");
-        }
+        window.open("https://randommathdotnet.files.wordpress.com/2014/02/hw4-wolfram-alpha-exmaple.png");
     });
 
     function randsplit(n)
